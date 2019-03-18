@@ -30,6 +30,7 @@ Other Details
 Bio.2 - S
 Talk Length
 Track - S
+Talk Format
 !.split("\n")
 
 i = {}
@@ -69,10 +70,10 @@ proposals = CSV.parse ARGF.read
 
 header = proposals.shift
 
-sf = ev.session_formats.last
-
 proposals.each do |pr|
   next if ev.proposals.where(title: pr[i['Title - S']]).count > 0
+
+  sf = ev.session_formats.find_by_name(pr[i['Talk Format']])
 
   obj = ev.proposals.create({
     title: pr[i['Title - S']],
