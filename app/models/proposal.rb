@@ -23,8 +23,8 @@ class Proposal < ApplicationRecord
   # This used to be 600, but it's so confusing for users that the browser
   # uses \r\n for newlines and they're over the 600 limit because of
   # bytes they can't see. So we give them a bit of tolerance.
-  validates :abstract, length: {maximum: 1000}
-  validates :title, length: {maximum: 60}
+  # validates :abstract, length: {maximum: 1000}
+  # validates :title, length: {maximum: 60}
   validates_inclusion_of :state, in: valid_states, allow_nil: true, message: "'%{value}' not a valid state."
   validates_inclusion_of :state, in: FINAL_STATES, allow_nil: false, message: "'%{value}' not a confirmable state.",
                          if: :confirmed_at_changed?
@@ -307,13 +307,13 @@ end
 #
 # Table name: proposals
 #
-#  id                    :integer          not null, primary key
-#  event_id              :integer
+#  id                    :bigint(8)        not null, primary key
+#  event_id              :bigint(8)
 #  state                 :string           default("submitted")
 #  uuid                  :string
 #  title                 :string
-#  session_format_id     :integer
-#  track_id              :integer
+#  session_format_id     :bigint(8)
+#  track_id              :bigint(8)
 #  abstract              :text
 #  details               :text
 #  pitch                 :text
