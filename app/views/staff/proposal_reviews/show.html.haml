@@ -105,15 +105,15 @@
 
     .col-md-4
       .widget.widget-card.widget-card-alt.flush-top
-        - if ratings_closed?(proposal, rating)
-          .widget-header
-            %h3 Rating
-          .widget-content
-            %p
-              %em Ratings are closed
+        -# - if ratings_closed?(proposal, rating)
+          -# .widget-header
+            -# %h3 Rating
+          -# .widget-content
+            -# %p
+              -# %em Ratings are closed
 
-        .widget-content
-          = render partial: 'shared/proposals/rating_form', locals: { event: event, proposal: proposal, rating: rating }
+        -# .widget-content
+          -# = render partial: 'shared/proposals/rating_form', locals: { event: event, proposal: proposal, rating: rating }
 
         .internal-comments{ class: !rating.persisted? ? "hidden" : nil }
           .widget-header
