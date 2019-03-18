@@ -85,7 +85,7 @@ proposals.each do |pr|
 
   cf = {}
   custom.each do |c|
-    cf[c] = pr[i[c]]
+    cf[c] = pr[i[c]].to_s
   end
 
   obj.custom_fields = cf
