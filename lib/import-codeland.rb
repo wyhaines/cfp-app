@@ -72,6 +72,8 @@ header = proposals.shift
 sf = ev.session_formats.last
 
 proposals.each do |pr|
+  next if ev.proposals.where(title: pr[i['Title - S']]).count > 0
+
   obj = ev.proposals.create({
     title: pr[i['Title - S']],
     details: pr[i['Details - S']],
