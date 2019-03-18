@@ -93,10 +93,11 @@ proposals.each do |pr|
   obj.save!
 
   obj.speakers.create({
+    event: ev,
     speaker_name: pr[i['Name - S']],
     speaker_email: pr[i['Email - S']],
     bio: pr[i['Bio.1 - S']].to_s + "\n" + pr[i['Bio.2 - S']].to_s,
-  })
+  }).save!
 
   puts obj.title
 end

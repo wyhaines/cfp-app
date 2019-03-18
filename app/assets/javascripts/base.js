@@ -28,7 +28,10 @@ function cfpDataTable(selector, columnTypes, opt_options) {
     "sPaginationType": "bootstrap",
     "bPaginate": false,
     "bStateSave": true,
-    "sDom": '<"top">Crt<"bottom"ilp><"clear">'
+    "sDom": '<"top">Crt<"bottom"ilp><"clear">',
+    "columnDefs": [
+      { "type": "natural", "targets": "_all"  }
+    ]
   };
 
   $.extend(options, opt_options);
