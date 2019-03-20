@@ -16,9 +16,9 @@
     = markdown(proposal.pitch)
 
 - if proposal.custom_fields.any?
-  - proposal.proposal_data[:custom_fields].select do |key,value|
+  - proposal.event.custom_fields.each do |key|
     .proposal-section
       %h3.control-label= key.capitalize
       %div
-      = value.capitalize
+      = proposal.proposal_data[:custom_fields][key]
       %div
