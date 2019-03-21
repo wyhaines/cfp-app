@@ -31,6 +31,14 @@ Bio.2 - S
 Talk Length
 Track - S
 Talk Format
+What attendees will make
+Background Info
+Tools/Resources
+Availability
+Frequency
+Tech
+Equipment Needed
+Video Link
 !.split("\n")
 
 i = {}
@@ -62,6 +70,14 @@ Intention
 Research
 Other Details
 Talk Length
+What attendees will make
+Background Info
+Tools/Resources
+Availability
+Frequency
+Tech
+Equipment Needed
+Video Link
 !.split("\n")
 
 ev = Event.last

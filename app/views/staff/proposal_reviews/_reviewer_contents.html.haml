@@ -17,8 +17,9 @@
 
 - if proposal.custom_fields.any?
   - proposal.event.custom_fields.each do |key|
-    .proposal-section
-      %h3.control-label= key.capitalize
-      %div
-      = proposal.proposal_data[:custom_fields][key]
-      %div
+    - if (val = proposal.proposal_data[:custom_fields][key]) && !val.empty?
+      .proposal-section
+        %h3.control-label= key.capitalize
+        %div
+        = val
+        %div
