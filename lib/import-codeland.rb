@@ -35,14 +35,21 @@ proposals.each do |pr|
 
   sf = ev.session_formats.find_by_name("Person")
 
-  obj = ev.proposals.create({
-    title: pr[i['Name']],
-    details: "None",
-    pitch: "None",
-    abstract: "None",
-    track: ev.tracks.find_by_name(pr[i['Track']]),
-    session_format: sf,
-  })
+  obj = ev.proposals.find_by_title(pr[i['Name']])
+  add_speaker = true
+  if obj
+    obj.track = ev.tracks.find_by_name(pr[i['Track']])
+    add_speaker = false
+  else
+    obj = ev.proposals.create({
+      title: pr[i['Name']],
+      details: "None",
+      pitch: "None",
+      abstract: "None",
+      track: ev.tracks.find_by_name(pr[i['Track']]),
+      session_format: sf,
+    })
+  end
 
   cf = {}
   custom.each do |c|
@@ -53,12 +60,14 @@ proposals.each do |pr|
 
   obj.save!
 
-  obj.speakers.create({
-    event: ev,
-    speaker_name: pr[i['Legal Name']] || pr[i['Name']],
-    speaker_email: pr[i['Email Address']] || 'none@none.com',
-    bio: pr[i['Traveling from']].to_s + "\n\n" + pr[i['Travel Needs']].to_s + "\n\n" + pr[i['Referrer']].to_s
-  }).save!
+  if add_speaker
+    obj.speakers.create({
+      event: ev,
+      speaker_name: pr[i['Legal Name']] || pr[i['Name']],
+      speaker_email: pr[i['Email Address']] || 'none@none.com',
+      bio: pr[i['Traveling from']].to_s + "\n\n" + pr[i['Travel Needs']].to_s + "\n\n" + pr[i['Referrer']].to_s
+    }).save!
+  end
 
   puts obj.title
 end
