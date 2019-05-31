@@ -48,36 +48,17 @@ end
 
 p i
 
-custom = %!Speaker Name
-Speaker Bio
+custom = %!Programming Experience
+Current Status
+Underrepresented Group
+Community Involvement
+CodeNewbie Involvement
+Code Goals
+Need
 LinkedIn
 Twitter
-Gender
-Ethnicity
-Ethnicity - Other
-Speaker Background
-Coding Status
-Coding Status - Other
-Coding Background
-Coding Background - Other
-Talk Topic
-Talk Topic - Other
-Talk Elements
-Talk Elements - Other
-Problem
-Takeaway
-Intention
-Research
 Other Details
-Talk Length
-What attendees will make
-Background Info
-Tools/Resources
-Availability
-Frequency
-Tech
-Equipment Needed
-Video Link
+Subscribe to Newsletter
 !.split("\n")
 
 ev = Event.last
@@ -87,16 +68,16 @@ proposals = CSV.parse ARGF.read
 header = proposals.shift
 
 proposals.each do |pr|
-  next if ev.proposals.where(title: pr[i['Title - S']]).count > 0
+  next if ev.proposals.where(title: pr[i['Name']]).count > 0
 
-  sf = ev.session_formats.find_by_name(pr[i['Talk Format']])
+  sf = ev.session_formats.find_by_name("Person")
 
   obj = ev.proposals.create({
-    title: pr[i['Title - S']],
-    details: pr[i['Details - S']],
-    pitch: pr[i['Pitch - S']],
-    abstract: "unused",
-    track: ev.tracks.find_by_name(pr[i['Track - S']]),
+    title: pr[i['Name']],
+    details: "None",
+    pitch: "None",
+    abstract: "None",
+    track: ev.tracks.find_by_name(pr[i['Track']]),
     session_format: sf,
   })
 
@@ -111,9 +92,9 @@ proposals.each do |pr|
 
   obj.speakers.create({
     event: ev,
-    speaker_name: pr[i['Name - S']],
-    speaker_email: pr[i['Email - S']],
-    bio: pr[i['Bio.1 - S']].to_s + "\n" + pr[i['Bio.2 - S']].to_s,
+    speaker_name: pr[i['Legal Name']],
+    speaker_email: pr[i['Email Address']],
+    bio: pr[i['Traveling from']].to_s + "\n\n" + pr[i['Travel Needs']].to_s + "\n\n" + pr[i['Referrer']].to_s
   }).save!
 
   puts obj.title
