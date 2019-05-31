@@ -55,8 +55,8 @@ proposals.each do |pr|
 
   obj.speakers.create({
     event: ev,
-    speaker_name: pr[i['Legal Name']],
-    speaker_email: pr[i['Email Address']],
+    speaker_name: pr[i['Legal Name']] || pr[i['Name']],
+    speaker_email: pr[i['Email Address']] || 'none@none.com',
     bio: pr[i['Traveling from']].to_s + "\n\n" + pr[i['Travel Needs']].to_s + "\n\n" + pr[i['Referrer']].to_s
   }).save!
 
