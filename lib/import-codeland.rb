@@ -63,12 +63,14 @@ Subscribe to Newsletter
 
 ev = Event.last
 
+p ev
+
 proposals = CSV.parse ARGF.read
 
 header = proposals.shift
 
 proposals.each do |pr|
-  next if ev.proposals.where(title: pr[i['Name']]).count > 0
+  # next if ev.proposals.where(title: pr[i['Name']]).count > 0
 
   sf = ev.session_formats.find_by_name("Person")
 
