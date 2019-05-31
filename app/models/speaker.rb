@@ -10,7 +10,7 @@ class Speaker < ApplicationRecord
   serialize :info, Hash
 
   validates :event, presence: true
-  validates :bio, length: {maximum: 500}
+  validates :bio, length: {maximum: 5000}
   validates :name, :email, presence: true, unless: :skip_name_email_validation
   validates_format_of :email, with: Devise.email_regexp
 
@@ -36,11 +36,11 @@ end
 #
 # Table name: speakers
 #
-#  id                 :integer          not null, primary key
-#  user_id            :integer
-#  event_id           :integer
-#  proposal_id        :integer
-#  program_session_id :integer
+#  id                 :bigint(8)        not null, primary key
+#  user_id            :bigint(8)
+#  event_id           :bigint(8)
+#  proposal_id        :bigint(8)
+#  program_session_id :bigint(8)
 #  speaker_name       :string
 #  speaker_email      :string
 #  bio                :text
