@@ -1,45 +1,6 @@
 require 'csv'
 
-fields = %!Name - S
-Speaker Name
-Email - S
-Speaker Bio
-LinkedIn
-Twitter
-Gender
-Ethnicity
-Ethnicity - Other
-Bio.1 - S
-Speaker Background
-Coding Status
-Coding Status - Other
-Coding Background
-Coding Background - Other
-Talk Topic
-Talk Topic - Other
-Title - S
-Talk Elements
-Talk Elements - Other
-Details - S
-Problem
-Takeaway
-Intention
-Research
-Pitch - S
-Other Details
-Bio.2 - S
-Talk Length
-Track - S
-Talk Format
-What attendees will make
-Background Info
-Tools/Resources
-Availability
-Frequency
-Tech
-Equipment Needed
-Video Link
-!.split("\n")
+fields = %!Name,Legal Name,Email Address,Track,Programming Experience,Current Status,Underrepresented Group,Community Involvement,CodeNewbie Involvement,Code Goals,Need,LinkedIn,Twitter,Other Details,Subscribe to Newsletter,Travel Needs,Traveling from,Referrer!.split(",")
 
 i = {}
 fields.each.with_index do |f,idx|
@@ -70,7 +31,7 @@ proposals = CSV.parse ARGF.read
 header = proposals.shift
 
 proposals.each do |pr|
-  # next if ev.proposals.where(title: pr[i['Name']]).count > 0
+  next if ev.proposals.where(title: pr[i['Name']]).count > 0
 
   sf = ev.session_formats.find_by_name("Person")
 
